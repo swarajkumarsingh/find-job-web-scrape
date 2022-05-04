@@ -1,17 +1,24 @@
+# imports
+import os
 import random
 import time
-
 import requests
 from bs4 import BeautifulSoup
 
+# Name of the JOB
 job_title = input(">")
 job_title_reformatted = job_title.replace(' ', '+')
 
+# Skill that you don't know - Filtering
 print('Put some skill that you are not familiar with.')
 unfamiliar_skill = input(">")
 unfamiliar_skill.lower()
 print("Fetching results...")
-e = ''
+
+# Checking POSTS folder
+newpath = r'posts'
+if not os.path.exists(newpath):
+    os.makedirs(newpath)
 
 
 def find_jobs():
@@ -32,7 +39,7 @@ def find_jobs():
             company_name = job.find('h3', class_="joblist-comp-name").text
             more_info = job.header.h2.a['href']
             if unfamiliar_skill not in skills:
-                n = random.randint(1, 200)
+                n = random.randint(1, 2000)
                 with open(f"posts/{n}.txt", 'w') as f:
                     f.write(f"Company Name: {company_name.strip()} \n")
                     f.write(f"Required Skills: {skills.strip()} \n")
