@@ -52,6 +52,7 @@ def find_jobs():
 
 if __name__ == "__main__":
     while True:
+        #re-running after 10 minutes
         find_jobs()
         print(f"Waiting for 10 minutes")
         time.sleep(10 * 60)
