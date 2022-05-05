@@ -2,6 +2,8 @@
     1. Use the API
     2. HTML Web Scraping using tools like BS4
 
+#Here we will use web scraping.
+
 ## Installation
 
 Install with pip
