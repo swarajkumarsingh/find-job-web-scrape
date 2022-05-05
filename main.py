@@ -23,15 +23,18 @@ if not os.path.exists(newpath):
 
 def find_jobs():
     try:
+        # Getting GET data         
         html_text = requests.get(
             f"https://www.timesjobs.com/candidate/job-search.html?searchType=personalizedSearch&from=submit&txtKeywords={job_title_reformatted}&txtLocation=").text
     except Exception as e:
         return print("Network not connected")
 
+    # pareing the DATA     
     soup = BeautifulSoup(html_text, 'lxml')
     jobs = soup.find_all('li', class_="clearfix job-bx wht-shd-bx")
 
-    for index, job in enumerate(jobs):
+    #Filtering Each element in jobs
+    for job in jobs:
         published_date = job.find('span', class_="sim-posted").span.text
         if "few" in published_date:
             skills = job.find('span', class_="srp-skills").text.replace(' ', '')
